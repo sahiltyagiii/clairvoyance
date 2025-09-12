@@ -27,8 +27,9 @@ WORKDIR /app
 COPY requirements.txt .
 
 # Install Python dependencies
-RUN pip install --no-cache-dir --upgrade pip && \
-    pip install --no-cache-dir -r requirements.txt
+RUN pip install --no-cache-dir nltk && \
+    mkdir -p /usr/local/nltk_data && \
+    python -m nltk.downloader punkt punkt_tab -d /usr/local/nltk_data
 
 # Create NLTK data directory and download required data
 RUN mkdir -p /usr/local/nltk_data && \
